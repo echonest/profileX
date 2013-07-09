@@ -1,6 +1,5 @@
 var chart;
-var api_key = '027ER5TKTSQ81BANR';
-var en = new EchoNest(api_key);
+var en;
 
 
 var curSongs = null;
@@ -957,6 +956,9 @@ function processParams() {
 }
 
 $(document).ready(function() {
-    initUI();
-    AmCharts.ready( function() { processParams()});
+    fetchApiKey( function(api_key, isLoggedIn) {
+        en = new EchoNest(api_key);
+        initUI();
+        AmCharts.ready( function() { processParams()});
+    });
 });
