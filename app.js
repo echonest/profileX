@@ -9,7 +9,6 @@ var autoStop = false;
 var allSongs = [];
 var params = { };
 
-en.trace=false;
 var charts = [
     {
         key: 'energy',
@@ -958,7 +957,10 @@ function processParams() {
 $(document).ready(function() {
     fetchApiKey( function(api_key, isLoggedIn) {
         en = new EchoNest(api_key);
-        initUI();
-        AmCharts.ready( function() { processParams()});
+        en.trace=false;
+        R.ready(function() {
+            initUI();
+            AmCharts.ready( function() { processParams()});
+        });
     });
 });
